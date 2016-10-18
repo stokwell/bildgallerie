@@ -1,0 +1,214 @@
+// Place all the styles related to the Photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	background-color:black;
+	color:white;
+	overflow: scroll;
+
+}
+.container {
+	margin:  auto;
+}
+
+.image { 
+    display: block;
+    margin: 2px 4px;
+}
+
+.image img {
+	display: inline-block;
+}
+
+.image p {
+   position: absolute;
+   display: inline-block;
+   bottom: 0;
+   left : 50%;
+   margin: 0 auto;
+   transform: translateX(-50%);
+   -webkit-transition: linear 0.5s;
+	transition: linear 0.5s;
+	-moz-transition: linear  0.5s;
+    -o-transition: linear   0.5s;
+    font-weight: lighter;
+    opacity: 0.6;
+    margin-bottom:10px;
+    padding:5px 10px;
+    text-align:center;
+   
+
+    
+}
+
+.main  {
+	list-style: none;
+}
+
+.main li {
+	padding: 0 10px;
+	list-style: none;
+	float:left;
+
+}
+
+.hidden {
+	color: transparent;
+	
+	
+}
+
+.visible {
+	color:white;
+	background-color: black;
+	padding:10px;
+}
+
+.popup {
+	width: 100vw;
+	position: relative;
+	height:100vh;
+	z-index: 10000;
+}
+.width {
+	width: 400px;
+}
+.show {
+	cursor: pointer;
+}
+.one {
+	cursor: pointer;
+}
+.single {
+	width: 500px;
+	display: inline-block;
+	display: table-cell; 
+	vertical-align: middle
+	
+}
+.box {
+	text-align:center;
+	position:relative;
+	margin-bottom:15px;
+}
+
+.image a {
+	
+}
+
+.uploader {
+	padding:20px;
+}
+.file {
+	width:80%;
+	border:none;
+	padding:0;
+}
+.formForImage {
+	
+}
+.form-control {
+	width: 589px;
+	border:none;
+	display:block;
+	margin: 3px;
+
+}
+textarea:focus{
+   outline: none !important;
+   border:none;
+}
+.btn {
+	width: 290px;
+	border:none;
+    box-shadow:none;
+    display: inline-block;
+    text-align:center;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color:pink;
+}
+
+.destroy {
+    position: absolute;
+    top:0;
+    right:0;
+    opacity: 0.5;
+    display:inline-block;
+}
+.edit {
+	position: absolute;
+    top: 0;
+    right:50px;
+    opacity: 0.5;
+    display: inline-block;
+}
+.cancel {
+	border: 2px solid white;
+	height:46px;
+
+}
+.hide {
+	display: none;
+}
+.wrapper {
+	position:relative;
+	width: 100%;
+}
+.wrapper .intoText {
+	display:block;
+}
+.wrapper form{
+	display:inline-block;
+}
+.wrapper form input {
+	width: 500px;
+}
+.form-group {
+   margin-bottom:20px;
+}
+
+.wrapper form textarea {
+	width: 518px;
+	margin: 3px;
+}
+.wrapper form .btn {
+   width: 100px;
+   text-align: center;
+   background: transparent;
+   color: white;
+   height:20px;
+}
+
+.wrapper form .btn:hover {
+   color: pink;
+}
+.field {
+   display:inline-block;
+}
+.wrapper img {
+	vertical-align: top;
+	margin-right:30px;
+}
+.exit {
+	display:inline-block;
+	float:right;
+	font-size:14px;
+}
+.row {
+	display:inline-block;
+	width:1000px;
+	margin:0 auto;
+	position: absolute;
+	left:50%;
+	transform: translatex(-50%);
+	
+}
+.texCenter {
+	border:none;
+	text-align:center;
+}
+#target img{
+	width:300px;
+}

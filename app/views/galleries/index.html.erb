@@ -1,0 +1,22 @@
+<header>
+  <h1>All galleries</h1>
+  <div><%= link_to 'home', welcome_index_path %></div>
+  <div><%= link_to 'to create new gallery', new_gallery_path %></div>
+</header>
+
+ <% @galleries.each do |gallery| %>
+
+  <div class="gallery galleryBox">
+ 
+     <h3 class="centered"><%= gallery.name %></h3>
+
+     <p class="title"><%= gallery.description %></p>
+    
+     <div><%= link_to 'Open this gallery', gallery %></div>
+     <div><%= link_to 'Delete', gallery_path(gallery),
+              method: :delete,
+              data: { confirm: 'Do You really want to delete this gallery?' } %></div>
+     <div><%= link_to 'Edit', edit_gallery_path(gallery) %></div>          
+ 
+   </div> 
+ <% end %>

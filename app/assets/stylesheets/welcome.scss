@@ -1,0 +1,55 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+nav ul {
+	list-style: none;
+	font-family: sans-serif;
+}
+
+nav ul li {
+	display: inline-block;
+	cursor: pointer;
+	-webkit-transition: linear 0.3s;
+	transition: linear 0.3s;
+	-moz-transition: linear  0.3s;
+    -o-transition: linear   0.3s;
+   
+}
+nav ul li a {
+	 -webkit-transition: linear 0.3s;
+	transition: linear 0.3s;
+	-moz-transition: linear  0.3s;
+    -o-transition: linear   0.3s;
+    
+}
+nav ul li:hover { 
+    color:red;
+}
+
+.main {
+	display: inline-block;
+}
+
+.main ul li {
+	padding: 0 10px;
+}
+
+.languages {
+	float: right;
+	margin: 0 40px 0 0;
+	
+}
+.languages ul li {
+	padding: 0 10px;
+}
+.name {
+	font-size:36px;
+
+}
+.bild {
+	text-align: center;
+}
+.bild img {
+	height: 500px;
+}

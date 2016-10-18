@@ -1,0 +1,24 @@
+<ul class="main">
+   <li><%= link_to 'Home', controller: 'welcome' %> </li>
+   <li><%= link_to 'Add new photo', new_users_image_path %></li>
+   <li class="show">show all descriptions</li>
+   <li class="one">show all images in one column</li>
+</ul>
+<div class="container">
+<div class="grid remove">
+ 
+
+ 
+ <% @users_images.each do |users_image| %>
+    <div class="image">
+    <%= link_to (users_image) do %>
+    <%= image_tag users_image.image.url if users_image.image_stored? %>
+       <% end %>
+    <p class="hidden"><%= users_image.title %></p>
+    
+     </div>         
+ 
+   <% end %>
+
+</div>
+</div>

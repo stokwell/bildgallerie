@@ -1,0 +1,11 @@
+<header>
+ <h1>To Create a new Gallery</h1>
+ <%= link_to 'back to galleries', galleries_path %>
+</header>
+ <div class="container">
+ <%= form_for @gallery do |f| %>
+   <div> <%= f.text_field :name, placeholder: 'Name'%></div>
+   <div> <%= f.text_area :description,  placeholder: 'Description', rows:'5', class:'text' %></div>
+    <%= f.submit 'Submit', class: 'btn' %>
+<% end %>
+<div>

@@ -1,0 +1,82 @@
+// Place all the styles related to the galleries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.text {
+	width: 270px;
+	padding: 10px;
+	margin:2px;
+}
+.gallery {
+	display: inline-block;
+	border: 1px solid red;
+	padding: 5px;
+	margin: 10px;
+	vertical-align: top;
+}
+
+.galleryBox {
+	width:230px;
+}
+.centered {
+	text-align: center;
+}
+.button {
+	cursor: pointer;
+}
+
+
+.navigation a {
+	margin-right:20px;
+}
+
+header {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.DoNotShow {
+    display: none;
+}
+
+.ModalViewForUpload {
+	position: absolute;
+	top:20%;
+	left:300px;
+	background:black;
+	width:300px;
+}
+
+
+.gallery img {
+	height: 300px;
+}
+
+.imageBox {
+	vertical-align: top;
+	border: none;
+    display:inline-block;
+	position: relative;
+	margin: 2px 4px;
+}
+.fields {
+	display:none;
+}
+
+.imageBox img{
+	width:455px;
+}
+
+.EditPictureBlock {
+	border:1px solid white;
+	margin: 20px;
+}
+.EditFormBox {
+	width: 300px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+.grid {
+	margin-left: 4px;
+}

@@ -1,0 +1,49 @@
+<header>  
+  <h1><%= @gallery.name %></h1>
+    <div class="navigation">
+      <%= link_to 'home', welcome_index_path %>
+      <%= link_to 'back to galleries', galleries_path %>
+	    <a class="button"> add new pictures </a>
+      <%= link_to 'edit', edit_gallery_path(@gallery) %>
+    </div>
+</header>
+
+<div class="grid">
+ <% @gallery.pictures.each do |p| %>
+   <div class="imageBox">
+    <%= link_to gallery_picture_path(@gallery, p) do %> 
+      <%= image_tag p.image.url if p.image_stored? %>
+      <p class="fields"><%= p.title %> </p>
+      <p class="fields"><%= p.author %> </p>
+      <p class="fields"><%= p.description %></p>
+      <%= link_to 'Edit', edit_gallery_picture_path(@gallery, p), class: 'edit' %>
+      <%= link_to 'Delete', [p.gallery, p],
+      class: 'destroy',
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+    </div>
+     <% end %>
+ <% end %>
+</div>
+
+ 
+<div class="DoNotShow" id="FormForUpload"> 
+
+ <div>
+   <ul id="preview-photo"> </ul>
+  </div>
+
+<div id="target"> </div>
+
+
+ <%= form_for([@gallery, @gallery.pictures.build]) do |f| %>
+   <%= f.file_field :image, class:'file', :multiple => true %>
+  <p>
+    <%= f.submit  %>
+  </p>
+  
+  <div id="target"></div>
+  
+ 
+  <% end %>
+ </div>

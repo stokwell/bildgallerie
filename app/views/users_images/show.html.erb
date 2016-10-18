@@ -1,0 +1,12 @@
+<header>
+   <h1><%= @users_image.title %></h1>
+   <%= link_to 'back', users_images_path %>
+   <%= link_to 'edit', edit_users_image_path %>
+   <%= link_to 'delete', users_image_path(@users_image), method: :delete, data: { confirm: 'Are you sure?' } %>
+</header>  
+
+<div class="container">
+<div class="ImageCenter">
+   <%= image_tag @users_image.image.url if @users_image.image_stored? %>
+</div>         
+</div>

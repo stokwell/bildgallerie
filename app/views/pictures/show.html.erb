@@ -1,0 +1,11 @@
+<header>
+   <h1><%= @picture.title %></h1>
+   <%= link_to 'back', gallery_path(@gallery) %>
+   <%= link_to 'edit', edit_gallery_picture_path %>
+</header>  
+
+<div class="container">
+<div class="ImageCenter">
+   <%= image_tag @picture.image.url  if @picture.image_stored? %>
+</div>         
+</div>

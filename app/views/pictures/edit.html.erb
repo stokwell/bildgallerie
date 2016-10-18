@@ -1,0 +1,33 @@
+<header>
+	<h1></h1>
+</header>
+<div class="wrapper">
+  <div class="row">
+  <div class="textCenter"><p class="introText textCenter">Edit this Picture</p></div>
+<%= image_tag @picture.image.url, class:'width' if @picture.image_stored? %>
+
+
+<%= form_for @picture, url: gallery_picture_path(@gallery, @picture), method: :patch do |f|%>
+
+<div class="field"> 
+
+   <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+    </div>
+   <div class="form-group">
+    <%= f.label :author %><br>
+    <%= f.text_field :author %>
+    </div>
+    <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+    </div>
+
+    <div class="exit"> 
+      <%= link_to 'Cancel', gallery_path(@gallery) %>
+      <%= f.submit 'Save Image', class: 'btn'%>
+     </div> 
+</div>
+    
+ <% end %>

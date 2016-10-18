@@ -1,0 +1,6 @@
+<%= form_for :pictures  do |f| %>
+    <%= f.text_field :author, placeholder: 'Author' %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+    <%= f.text_field :description, placeholder: 'Description' %>
+    <%= f.submit 'Submit', class: 'btn' %>
+ <% end %>

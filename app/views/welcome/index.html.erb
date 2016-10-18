@@ -1,0 +1,59 @@
+<nav class="main">
+<ul>
+  <!--<li>Bild des Tages wählen</li>
+  <li>Bild des Tages vorschlagen</li>-->
+  <li><%= link_to 'Archiv', photos_path %></li>
+  <li>Lectüre</li>
+  <li><%= link_to 'Galleries', galleries_path %></li>
+  
+</ul>
+</nav>
+
+<nav class="languages">
+  <ul>
+    <li>Sprachen</li>
+      <% if current_user %> 
+
+    <li><%= link_to current_user.loginname + "'s gallerie", users_images_path %></li> 
+    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
+ 
+    <% else %> 
+
+    <li><%= link_to "Log in", 'login' %></a></li> 
+    <li><%= link_to 'Sign up', 'signup' %></li>
+
+  </ul>
+<% end %>   
+  </ul>
+</nav>
+
+
+
+
+<div class="bild">
+   <p class="name"> Digitale Bildgallerie</p>
+   <p><%=image_tag('3.jpg') %></p>
+</div>
+
+
+<!--<%= link_to 'Photos', controller: 'photos' %>
+<%= link_to 'New Image', new_image_path %>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @images.each do |image| %>
+    <tr>
+      <td><%= image.title %></td>
+      <td><%= image.author %></td>
+      <td><%= image.text %></td>
+      <td><%= link_to 'Show', image_path(image) %></td>
+      <td><%= link_to 'Edit', edit_image_path(image) %></td>
+    </tr>
+  <% end %>
+</table>-->
+

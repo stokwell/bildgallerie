@@ -1,0 +1,8 @@
+<h1>hallo</h1>
+ <%= form_for :pictures do |f| %>
+   <div class="EditFormBox">
+    <%= f.text_field :title, placeholder: 'Title'%>
+    <%= f.text_area :description,  class: 'form-control', rows:'3', class:'text'  %>
+    <%= f.submit 'Submit', class: 'btn' %>
+    </div>
+ <% end %>

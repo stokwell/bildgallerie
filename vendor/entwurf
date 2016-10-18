@@ -1,0 +1,20 @@
+<p>Picture</p>
+    <div>
+    <p>first pictuire</p>
+    <%= f.fields_for :pictures do |p| %>
+   		 <%= p.text_field :title  %>
+   		 <%= p.text_field :author %>
+   		 <%= p.text_field :description %>
+    		
+       <% end %>
+    </div>
+
+    <div>
+    <p>second pictuire</p>		
+     <%= f.fields_for :pictures do |p| %>
+   		 <%= p.text_field :title  %>
+   		 <%= p.text_field :author %>
+   		 <%= p.text_field :description %>
+    		
+    		<% end %> 		
+    </div>

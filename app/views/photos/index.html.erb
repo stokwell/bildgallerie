@@ -1,0 +1,25 @@
+
+<ul class="main">
+   <li><%= link_to 'Home', controller: 'welcome' %> </li>
+   <li><%= link_to 'Add your photo', new_photo_path %></li>
+   <li class="show">show all descriptions</li>
+   <li class="one">show all images in one column</li>
+</ul>
+<div class="container">
+<div class="grid remove">
+
+  <% @photos.each do |photo| %>
+    <div class="image">
+    <%= image_tag photo.image.url if photo.image_stored? %>
+    <p class="hidden"><%= photo.title %></p>
+    <%= link_to 'Edit', edit_photo_path(photo), class:'edit' %>
+    <%= link_to 'Delete', photo_path(photo),
+              class: 'destroy',
+              method: :delete,
+              data: { confirm: 'Do You really want to delete this picture?' } %>
+     </div>         
+  <% end %>
+   
+
+</div>
+</div>

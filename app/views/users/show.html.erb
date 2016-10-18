@@ -1,0 +1,9 @@
+  <p>hello</p>
+ 
+ <% @users_images.each do |users_image| %>
+    <div class="image">
+    <%= image_tag users_image.image.url if users_image.image_stored? %>
+    <p class="hidden"><%= users_image.title %></p>
+    
+     </div>         
+  <% end %>
