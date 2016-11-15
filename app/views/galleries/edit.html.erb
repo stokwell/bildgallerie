@@ -1,13 +1,39 @@
-<header>
-  <h1 class="centered">Edit this Gallery</h1>
-  <div><%= link_to 'back', gallery_path(@gallery) %></div>
-</header>
+<nav class="main">
+  <ul>
+    <li><%= link_to 'home', welcome_index_path %></li>
+    <li><%= link_to 'back to galleries', galleries_path %></li>
+  </ul>
+</nav>
 
+<nav class="main right">
+  <ul>
+    <li>publish</li>  
+    <li><%= link_to 'delete this gallery', gallery_path(@gallery), method: :delete,
+              data: { confirm: 'Do You really want to delete this gallery?' } %></li> 
+  </ul>
+</nav>
+
+
+<h1 class="centered">Edit this Gallery</h1>
+
+<p class="centered">Gallery's Description</p>
  <%= form_for @gallery do |f| %>
-   <div class="EditFormBox">
-    <%= f.text_field :name, placeholder: 'Name'%>
-    <%= f.text_area :description,  class: 'form-control', rows:'3', class:'text'  %>
-    <%= f.submit 'Submit', class: 'btn' %>
+   <div class="gallery"> 
+      <div class="cover-box">
+        <p class="centered">Gallery's preview</p>
+        <%= image_tag @gallery.image.url  if @gallery.image_stored? %>
+        <p class="centered">Upload another image for gallery's prewiev</p>
+        <%= f.file_field :image, class:'file' %>
+        <label for="gallery_image">Upload</label>
+      </div>
+      <div class="description-box"> 
+        <p class="centered">Title</p>
+        <%= f.text_field :name, placeholder: 'Name'%>
+        <p class="centered">Description</p>
+        <%= f.text_area :description,  class: 'form-control', rows:'3', class:'text'  %>
+    
+        <%= f.submit 'Submit', class: 'btn' %>
+      </div>
     </div>
 
 
@@ -15,15 +41,17 @@
  
  <p class="centered">Pictures in this gallery</p>
      <% @gallery.pictures.each do |p| %>
-      <div class="gallery"> 
-       <%= image_tag p.image.url if p.image_stored? %>
+
+      <div class="gallery">
+        <ul class="edit-picture">
+          <li>Set as a gallery's preview</li>
+          <li><%= link_to 'Delete', [p.gallery, p], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul> 
+         <%= image_tag p.image.url if p.image_stored? %> 
          <p class="author"><%= p.title %>  </p>
          <p class="author"><%= p.author %>  </p>
-         <p class="comment"><%= p.description %></p>
-          <%= link_to 'Delete', [p.gallery, p],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-       </div>
+         <p class="comment"><%= p.description %></p> 
+      </div>
       <% end %> 
 
  <% end %> 

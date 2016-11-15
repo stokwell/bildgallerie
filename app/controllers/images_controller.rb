@@ -18,7 +18,7 @@ end
 
 
 def create
-    @image = Image.new(params.require(:image).permit(:title, :author, :text))
+    @image = Image.new(params.require(:).permit(:title, :author, :text))
   
     if @image.save
     redirect_to @image

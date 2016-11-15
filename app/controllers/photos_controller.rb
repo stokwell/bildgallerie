@@ -18,7 +18,7 @@ class PhotosController < ApplicationController
 
 
   def create
-    @photo = Photo.new(photo_params)
+    @photo = Photo.new(params.require(:photo).permit(:title, :author, :text))
     if @photo.save
       redirect_to photos_path
     else
@@ -26,15 +26,6 @@ class PhotosController < ApplicationController
     end
   end
 
- def create
-    @photos = Photo.order('created_at DESC')
-    @photo = Photo.new
-    if @photo.save
-      redirect_to photos_path
-    else
-      render 'new'
-    end
- end
 
 
   def destroy
@@ -46,7 +37,7 @@ class PhotosController < ApplicationController
 
   def update
   @photo = Photo.find(params[:id])
- 
+
   if @photo.update(photo_params)
     redirect_to '/photos'
   else
@@ -57,6 +48,6 @@ end
 
   private
   def photo_params
-    params.require(:photo).permit(:image, :title, :author, :text)
+    params.require(:photo).permit(:image, :title, :author, :description)
   end
 end

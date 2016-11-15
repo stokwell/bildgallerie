@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+  devise_for :users
   get 'welcome/index'
   get 'images/show'
   get 'images/new'
@@ -19,12 +21,14 @@ Rails.application.routes.draw do
   delete '/photos' => 'photos#destroy'
   delete 'logout' => 'sessions#destroy'
   post '/galleries/:gallery_id/pictures/:id(.:format)' => 'pictures#update'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'welcome#index'
+   root 'galleries#show'
+
+   get 'angular_test', to: "angular_test#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

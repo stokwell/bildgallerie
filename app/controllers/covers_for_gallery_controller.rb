@@ -1,0 +1,2 @@
+class CoversForGalleryController < ApplicationController
+end

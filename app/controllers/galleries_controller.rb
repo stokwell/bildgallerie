@@ -1,25 +1,26 @@
 class GalleriesController < ApplicationController
-   def index
-     @galleries = Gallery.all
-   end
+  def index
+     @galleries = Gallery.all.order(created_at: :desc)
+     @gallery = Gallery.new
+  end
    
   def show 
     @gallery = Gallery.find(params[:id])
-    @gallery.pictures.order("created_at DESC")
-   end   
+    @pictures = @gallery.pictures.all.order(created_at: :desc)
+  end   
 
   def new
     @gallery = Gallery.new
     @gallery.pictures.build
-   end
+  end
 
   def create
-    @gallery = Gallery.new(gallery_params)
-    if @gallery.save
-      redirect_to galleries_path
-    else
-      render 'new'
-    end
+    respond_to do |format|
+       @gallery = Gallery.new(gallery_params)
+       @gallery.save
+       format.html { redirect_to galleries_path }
+       format.js   
+   end
   end 
 
   def edit
@@ -28,25 +29,29 @@ class GalleriesController < ApplicationController
 
 
  def update
-   @gallery = Gallery.find(params[:id])
-    if @gallery.update(gallery_params)
-      redirect_to @gallery
-    else
-      render :action => 'edit'
+   respond_to do |format|
+     @gallery = Gallery.find(params[:id])
+     @gallery.update(gallery_params)
+     format.html {  redirect_to @gallery}
+     format.js   
     end
-  end
-
-  def destroy 
+ end
+ 
+ def destroy 
     @gallery = Gallery.find(params[:id])
+    respond_to do |format|
     @gallery.destroy
-
-    redirect_to galleries_path
+    format.js
+    format.html { redirect_to galleries_path }
   end
+ end
 
 
- private
+
+
+private
   def gallery_params
-    params.require(:gallery).permit(:name, :gallery_id, :description, :picture_id, :pictures, pictures_attributes: [:id, :title, :author, :description])
+    params.require(:gallery).permit( :image, :name, :gallery_id, :description, :picture_id, :pictures, pictures_attributes: [:id, :title, :author, :description])
   end
 
 end

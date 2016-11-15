@@ -1,22 +1,59 @@
+<nav class="main">
+  <ul>
+    <li><%= link_to 'home', welcome_index_path %></li>
+    <li><%= link_to 'add new gallery', new_gallery_path %></li>
+  </ul>
+</nav>
+
 <header>
   <h1>All galleries</h1>
-  <div><%= link_to 'home', welcome_index_path %></div>
-  <div><%= link_to 'to create new gallery', new_gallery_path %></div>
+
+  <!--<div><%= link_to 'home', welcome_index_path %></div>
+  <div><%= link_to 'add new gallery', new_gallery_path %></div>-->
 </header>
 
+<div class="gallery galleryBox DoNotShow">
+  <h3 class="centered">Create new gallery</h3>
+  <%= form_for(@gallery, remote: true) do |f| %>
+    <div class="cover-box">
+      <p class="centered">Unpload an Image for gallery's preview</p>
+      <%= f.file_field :image, class:'file' %>
+    </div>
+
+    <div class="description-box">
+      <p class="centered">Title</p>
+      <%= f.text_field :name, placeholder: 'Name', required: true  %>
+      <p class="centered">Description</p>
+      <%= f.text_field :description,  placeholder: 'Description', required: true %>
+      <%= f.submit 'Create' %>  
+    </div>
+   <% end %> 
+ </div>
+
+<div class="galleries-wrapper">
  <% @galleries.each do |gallery| %>
+   
+  <div class="gallery">
+     <div class="cover-box">
+       <%= link_to(gallery) do %>
+       <%= image_tag gallery.image.url  if gallery.image_stored? %>
+       <% end %>
+     </div>
 
-  <div class="gallery galleryBox">
- 
-     <h3 class="centered"><%= gallery.name %></h3>
+     <div class="description-box">
+       <h3 class="centered"><%= gallery.name %></h3>
 
-     <p class="title"><%= gallery.description %></p>
+       <p class="title"><%= gallery.description %></p>
     
-     <div><%= link_to 'Open this gallery', gallery %></div>
-     <div><%= link_to 'Delete', gallery_path(gallery),
+   
+       <%= link_to 'Edit', edit_gallery_path(gallery), class: 'edit' %>       
+       <%= link_to 'Delete', gallery_path(gallery),
+              class: 'destroy',
               method: :delete,
-              data: { confirm: 'Do You really want to delete this gallery?' } %></div>
-     <div><%= link_to 'Edit', edit_gallery_path(gallery) %></div>          
- 
-   </div> 
+              data: { confirm: 'Do You really want to delete this gallery?' } %>
+     </div>
+   </div>
+    
  <% end %>
+</div>
+

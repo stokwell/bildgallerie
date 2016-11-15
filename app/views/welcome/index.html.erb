@@ -12,18 +12,11 @@
 <nav class="languages">
   <ul>
     <li>Sprachen</li>
-      <% if current_user %> 
-
-    <li><%= link_to current_user.loginname + "'s gallerie", users_images_path %></li> 
-    <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
- 
-    <% else %> 
-
     <li><%= link_to "Log in", 'login' %></a></li> 
     <li><%= link_to 'Sign up', 'signup' %></li>
 
   </ul>
-<% end %>   
+
   </ul>
 </nav>
 
@@ -31,8 +24,14 @@
 
 
 <div class="bild">
+   <p class="name">Welcome <%= current_user.email %></p>
    <p class="name"> Digitale Bildgallerie</p>
-   <p><%=image_tag('3.jpg') %></p>
+   <p><%= image_tag('3.jpg', :id => "cover_img" ) %></p>
+    <div id="preview-pane">
+    <div class="preview-container">
+      <%= image_tag('3.jpg', :height => "200px", :width => "300px" ) %>
+    </div>
+  </div>
 </div>
 
 

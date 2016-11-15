@@ -1,24 +1,58 @@
 // Place all the styles related to the galleries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* { box-sizing: border-box; }
+
+a {
+	outline: none;
+}
+
+ul {
+	list-style:none;
+}
+
 .text {
 	width: 270px;
 	padding: 10px;
 	margin:2px;
 }
-.gallery {
-	display: inline-block;
-	border: 1px solid red;
-	padding: 5px;
-	margin: 10px;
-	vertical-align: top;
+
+.galleries-wrapper {
+    width:100%;
 }
 
-.galleryBox {
-	width:230px;
+.gallery {
+    width:650px;
+	padding: 5px;
+	margin: 0 auto;
+	margin:20px auto;
+	vertical-align: top;
+	background: #0e0e0e;
+	border-radius: 6px;
+	
+    
 }
+
+.cover-box {
+	width:315px;
+	display:inline-block;
+	
+}
+
+.description-box {
+	width:315px;
+	display:inline-block;
+	vertical-align: top; 
+	padding: 0 10px;
+	position:relative;
+
+}
+
+
 .centered {
 	text-align: center;
+	
 }
 .button {
 	cursor: pointer;
@@ -41,32 +75,72 @@ header {
 }
 
 .ModalViewForUpload {
-	position: absolute;
-	top:20%;
-	left:300px;
+	position: fixed;
+    background:black;
+	width:900px;
+	top: 50%; left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    z-index:100;
+    border:1px solid red;
+    min-height: 400px;
+    overflow: auto;
+
+}
+
+.modalview-background {
+	height:100%;
+	width:100%;
 	background:black;
-	width:300px;
+	opacity:0.5;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:1;
+
+}
+
+.lock {
+	overflow: hidden;
 }
 
 
 .gallery img {
-	height: 300px;
+	width: 100%;
+}
+
+.form-for-upload{
+	width:700px;
+	margin:0 auto;
+	border:1px solid red;
 }
 
 .imageBox {
-	vertical-align: top;
+    position:relative;
 	border: none;
+	margin: 10px;
+    height:auto;
     display:inline-block;
-	position: relative;
-	margin: 2px 4px;
+    vertical-align:top;
+
 }
+
+.centered-children {
+	text-align: center;
+}
+
 .fields {
 	display:none;
 }
 
 .imageBox img{
-	width:455px;
+    width:700px;
+    margin: 0 auto;
+	display: block;
+	
 }
+
 
 .EditPictureBlock {
 	border:1px solid white;
@@ -77,6 +151,91 @@ header {
 	margin: 0 auto;
 	margin-bottom: 30px;
 }
+
 .grid {
 	margin-left: 4px;
+	
+	
+
 }
+
+
+.one-image-size {
+	width:600px;
+}
+
+
+.new_gallery input {
+	background: none;
+	color: white;
+	border:none;
+	width:215px;
+	height:30px;
+	border-bottom: 1px solid #93f;
+}
+
+.new_gallery textarea {
+	background: none;
+	color: white;
+	padding:15px;
+	border:none;
+
+}
+
+.submit-btn {
+	display:inline-block;
+	text-align: center;
+	border: 1px solid #93f;
+	margin-top: 20px;
+	margin-bottpom:20px;
+}
+
+.new_gallery input:focus{
+	border:none
+}
+
+.new_gallery button {
+	border:1px solid white;
+}
+
+.right {
+	float:right;
+	margin-right:40px;
+}
+
+.centered-children {
+	text-align:center;
+}
+
+.edit-picture  {
+	list-slyle:none;
+	float:right;
+	
+}
+
+.edit-picture  li {
+	list-slyle:none;
+	float:left;
+	padding: 0 5px
+}
+
+#gallery_image {
+	position:absolute;
+	opacity:0;
+	width:150px;
+	display: inline-block;
+}
+
+#gallery_image + label {
+	width:150px;
+	text-align:center;
+	background-color: #93f;
+	display: block;
+	padding:10px;
+	position:relative;
+	cursor:pointer;
+	margin:0 auto;
+	border-radius:4px;
+}
+
+
