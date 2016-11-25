@@ -17,7 +17,7 @@
 <h1 class="centered">Edit this Gallery</h1>
 
 <p class="centered">Gallery's Description</p>
- <%= form_for @gallery do |f| %>
+ <%= form_for @gallery  do |f| %>
    <div class="gallery"> 
       <div class="cover-box">
         <p class="centered">Gallery's preview</p>
@@ -28,11 +28,11 @@
       </div>
       <div class="description-box"> 
         <p class="centered">Title</p>
-        <%= f.text_field :name, placeholder: 'Name'%>
+        <%= f.text_field :name, placeholder: 'Name' %>
         <p class="centered">Description</p>
-        <%= f.text_area :description,  class: 'form-control', rows:'3', class:'text'  %>
+        <%= f.text_area :description,  rows:'5', class:'text'  %>
     
-        <%= f.submit 'Submit', class: 'btn' %>
+        <%= f.submit 'Submit', class: 'submit-btn' %>
       </div>
     </div>
 
@@ -40,12 +40,12 @@
 
  
  <p class="centered">Pictures in this gallery</p>
-     <% @gallery.pictures.each do |p| %>
+     <% @pictures.each do |p| %>
 
       <div class="gallery">
         <ul class="edit-picture">
           <li>Set as a gallery's preview</li>
-          <li><%= link_to 'Delete', [p.gallery, p], method: :delete, data: { confirm: 'Are you sure?' } %></li>
+          <li><%= link_to 'Delete', [p.gallery, p], remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul> 
          <%= image_tag p.image.url if p.image_stored? %> 
          <p class="author"><%= p.title %>  </p>

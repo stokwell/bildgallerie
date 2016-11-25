@@ -19,7 +19,9 @@ ul {
 }
 
 .galleries-wrapper {
-    width:100%;
+    width:1020px;
+    margin:0 auto;
+    padding-bottom:100px;
 }
 
 .gallery {
@@ -30,23 +32,56 @@ ul {
 	vertical-align: top;
 	background: #0e0e0e;
 	border-radius: 6px;
+	padding-bottom:30px;
 	
     
+}
+
+.gallery img {
+	width: 100%;
+}
+
+.gallery-box {
+	vertical-align: top;
+	display: inline-block;
+	margin:10px;
+	width:315px;
+	
+}
+
+.gallery-box img {
+	width: 100%;
+
 }
 
 .cover-box {
 	width:315px;
 	display:inline-block;
+	position:relative;
 	
 }
+
 
 .description-box {
 	width:315px;
 	display:inline-block;
 	vertical-align: top; 
 	padding: 0 10px;
-	position:relative;
+}
 
+figcaption {
+	background: linear-gradient(rgba(25,26,40,0),rgba(25,26,40,0) 50%,rgba(25,26,40,0.75));
+	position:absolute;
+	height:100%;
+	width:100%;
+	z-index:100;
+	top:0;
+}
+
+.info-box {
+	position:absolute; 
+	bottom:0;
+	padding:15px;
 }
 
 
@@ -76,15 +111,15 @@ header {
 
 .ModalViewForUpload {
 	position: fixed;
-    background:black;
+    background:white;
 	width:900px;
 	top: 50%; left: 50%;
 	-webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
     z-index:100;
-    border:1px solid red;
-    min-height: 400px;
+    padding:20px;
+    height: 400px;
     overflow: auto;
 
 }
@@ -101,14 +136,18 @@ header {
 
 }
 
+.add {
+	display:inline-block;
+	position:absolute;
+	bottom:0;
+	right:0;
+	margin:20px;
+}
+
 .lock {
 	overflow: hidden;
 }
 
-
-.gallery img {
-	width: 100%;
-}
 
 .form-for-upload{
 	width:700px;
@@ -146,6 +185,7 @@ header {
 	border:1px solid white;
 	margin: 20px;
 }
+
 .EditFormBox {
 	width: 300px;
 	margin: 0 auto;
@@ -154,9 +194,6 @@ header {
 
 .grid {
 	margin-left: 4px;
-	
-	
-
 }
 
 
@@ -164,17 +201,23 @@ header {
 	width:600px;
 }
 
-
-.new_gallery input {
+#gallery_name,
+#gallery_description {
 	background: none;
 	color: white;
 	border:none;
-	width:215px;
-	height:30px;
+	width:260px;
 	border-bottom: 1px solid #93f;
+	margin:0 auto;
+	display:block;
+	padding:5px 0;
 }
 
-.new_gallery textarea {
+#gallery_description{
+	margin-bottom:30px;
+}
+
+.edit_input textarea {
 	background: none;
 	color: white;
 	padding:15px;
@@ -183,16 +226,19 @@ header {
 }
 
 .submit-btn {
-	display:inline-block;
+	display: block;
 	text-align: center;
-	border: 1px solid #93f;
-	margin-top: 20px;
-	margin-bottpom:20px;
+	background: #93f;
+	width:150px;
+	margin:0 auto;
+	border-radius:4px;
+	color:white;
+	border:none;
+	padding:7px;
+	font-size:16px;
+	cursor: pointer;
 }
 
-.new_gallery input:focus{
-	border:none
-}
 
 .new_gallery button {
 	border:1px solid white;
@@ -219,14 +265,15 @@ header {
 	padding: 0 5px
 }
 
-#gallery_image {
+#gallery_image, #picture_image {
 	position:absolute;
 	opacity:0;
 	width:150px;
 	display: inline-block;
 }
 
-#gallery_image + label {
+#gallery_image + label,
+#picture_image + label {
 	width:150px;
 	text-align:center;
 	background-color: #93f;

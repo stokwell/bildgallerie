@@ -1,0 +1,7 @@
+$('#<%= dom_id(@picture) %>').fadeOut(function(){
+	this.remove();
+	$grid = $('#grid').packery({
+        itemSelector: '.imageBox'
+        });
+})
+

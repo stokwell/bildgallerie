@@ -24,7 +24,8 @@
        <%= form_for([@gallery, @gallery.pictures.build], remote: true) do |f| %>
        
        <%= f.file_field :image, class:'file', :multiple => true %>
-       <p><%= f.submit  %></p>
+       <label for="picture_image">Choose</label>
+       <div class="add"><%= f.submit 'Upload' %></div>
        <% end %>
    
  </div>
@@ -38,9 +39,8 @@
        <p><% end %></p>
    </div>-->
   <div id="grid">
-   
-
- <% @pictures.each do |p| %>
+ <% @pictures.each do |p| %> 
+  <%= div_for p do %>
    <div class="imageBox">
     <%= link_to gallery_picture_path(@gallery, p) do %> 
     
@@ -59,6 +59,7 @@
     
      
      </div>
+     <% end %>
  <% end %>
  </div>
 </div>

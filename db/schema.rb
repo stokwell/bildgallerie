@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105145212) do
+ActiveRecord::Schema.define(version: 20161115153535) do
 
   create_table "cases", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "covers", force: :cascade do |t|
+    t.string   "image_uid"
+    t.integer  "gallery_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

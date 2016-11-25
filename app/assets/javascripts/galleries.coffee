@@ -14,9 +14,12 @@ $ ->
 $ ->
    $('.multi-image-grid').on 'click', -> 
      $('.imageBox img').css({'width' : '390px'})
-     $grid = $('#grid').packery({
-        itemSelector: '.imageBox';
-        });
+     $grid = $('#grid').packery()
+     $grid.imagesLoaded().progress ->
+       $grid.packery ({
+         itemSelector: '.imageBox';
+       });
+    
 
 $ ->
    $('.one-image-grid').on 'click', -> 
@@ -26,7 +29,10 @@ $ ->
      $grid.packery('destroy')
      $('.imageBox img').css({'width' : '700px'})
 
- 
+#$ -> 
+ #  $grid = $('#galleries_grid').packery({
+  #      itemSelector: '.gallery-box';
+   #     }); 
 
 
 

@@ -25,6 +25,7 @@ class GalleriesController < ApplicationController
 
   def edit
     @gallery = Gallery.find(params[:id])
+    @pictures = @gallery.pictures.all.order(created_at: :desc)
   end
 
 

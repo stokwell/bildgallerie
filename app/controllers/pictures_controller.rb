@@ -9,14 +9,13 @@ class PicturesController < ApplicationController
  end
 
  def create
-    respond_to do |format|
     @gallery= Gallery.find(params[:gallery_id])
-    params[:picture]['image'].each do |a|
-    @picture = @gallery.pictures.create!(:image => a)
-    end
-    format.html {  redirect_to @gallery}
+      respond_to do |format|
+        params[:picture]['image'].each do |a|
+        @picture = @gallery.pictures.create!(:image => a)
+      end
+    format.html 
     format.js   
-    
   end
  end
 
@@ -42,7 +41,7 @@ end
     @gallery = Gallery.find(params[:gallery_id])
     @picture = @gallery.pictures.find(params[:id])
     @picture.destroy
-    format.html {  redirect_to @gallery}
+    format.html { render gallery_path(@gallery)}
     format.js   
   end  
  end
