@@ -1,6 +1,8 @@
 class WelcomeController < ApplicationController
-
+ 
   def index
-    @images = Image.all
+    @galleries = Gallery.where(:published => true).all
   end
+
+
 end

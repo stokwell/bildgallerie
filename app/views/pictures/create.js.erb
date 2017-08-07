@@ -1,0 +1,8 @@
+<% if @picture.new_record? %>
+alert('The photo could not be uploaded: <%= j @photo.errors.full_messages.join(', ').html_safe %>');
+<% else %>
+$('#FormForUpload').toggleClass('DoNotShow').toggleClass('ModalViewForUpload')
+$('.modalview-background').toggleClass('DoNotShow')
+$('body').removeClass('lock')
+$('#grid').prepend('<%= j render @picture %>')
+<% end %>

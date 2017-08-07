@@ -1,0 +1,18 @@
+<h3 class="centered">Published User's Galleries</h3>
+<div class="galleries-wrapper" id="galleries_grid">
+ <% @galleries.each do |gallery| %>
+   <%= div_for gallery do %>
+     <div class="gallery-box">
+       <div class="cover-box">
+         <%= link_to(gallery) do %>
+         <%= image_tag gallery.avatar.url(:cover) %>
+         <% end %>
+         <div class="info-box"> 
+           <h3 class="gallery-title"><%= gallery.name %></h3>
+           <p class="gallery-description"><%= gallery.description %></p>
+         </div>
+       </div>
+    </div>
+  <% end %>
+ <% end %>
+</div>

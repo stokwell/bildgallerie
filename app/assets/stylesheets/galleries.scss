@@ -1,24 +1,117 @@
 // Place all the styles related to the galleries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "angled-edges";
+
+/* 
+ .gallery-info {
+	@include angled-edge('inside bottom', 'lower right', grey,  1280, 150);
+	height:600px;
+	z-index:1;
+}
+*/
+
+* { box-sizing: border-box; }
+
+a {
+	outline: none;
+}
+
+ul {
+	list-style:none; 
+}
+
+.menu-right {
+	margin-right: 40px;
+	float:right;
+}
+
 .text {
 	width: 270px;
 	padding: 10px;
 	margin:2px;
 }
-.gallery {
-	display: inline-block;
-	border: 1px solid red;
-	padding: 5px;
-	margin: 10px;
-	vertical-align: top;
+
+.galleries-wrapper {
+    width:1020px;
+    margin:0 auto;
+    padding-bottom:100px;
 }
 
-.galleryBox {
-	width:230px;
+.gallery_new {
+    width:650px;
+	padding: 5px;
+	margin: 0 auto;
+	margin:20px auto;
+	vertical-align: top;
+	background: #0e0e0e;
+	border-radius: 6px;
+	padding-bottom:30px;
+	
+    
 }
+
+.gallery_new img,
+.gallery img
+
+ {
+	width: 100%;
+}
+
+.gallery {
+	display: inline-block;
+	min-width:300px;
+	min-height:300px;
+	position:relative;
+} 
+
+.gallery-box {
+	vertical-align: top;
+	display: inline-block;
+	margin:10px;
+	width:315px;
+	
+}
+
+.gallery-box img {
+	width: 100%;
+
+}
+
+.cover-box {
+	width:315px;
+	display:inline-block;
+	
+	
+}
+
+
+.description-box {
+	width:315px;
+	display:inline-block;
+	vertical-align: top; 
+	padding: 0 10px;
+}
+
+figcaption {
+	background: linear-gradient(rgba(25,26,40,0),rgba(25,26,40,0) 50%,rgba(25,26,40,0.75));
+	position:absolute;
+	height:100%;
+	width:100%;
+	z-index:100;
+	top:0;
+}
+
+.info-box {
+	position:absolute; 
+	bottom:0;
+	padding:15px;
+}
+
+
 .centered {
 	text-align: center;
+	
 }
 .button {
 	cursor: pointer;
@@ -41,42 +134,179 @@ header {
 }
 
 .ModalViewForUpload {
-	position: absolute;
-	top:20%;
-	left:300px;
+	position: fixed;
+    background:white;
+	width:900px;
+	top: 50%; left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    z-index:100;
+    padding:20px;
+    height: 400px;
+    overflow: auto;
+
+}
+
+.modalview-background {
+	height:100%;
+	width:100%;
 	background:black;
-	width:300px;
+	opacity:0.5;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index:1;
+
+}
+
+.add {
+	display:inline-block;
+	position:absolute;
+	bottom:0;
+	right:0;
+	margin:20px;
+}
+
+.lock {
+	overflow: hidden;
 }
 
 
-.gallery img {
-	height: 300px;
+.form-for-upload{
+	width:700px;
+	margin:0 auto;
+	border:1px solid red;
 }
 
 .imageBox {
-	vertical-align: top;
+    position:relative;
 	border: none;
+	margin: 10px;
+    height:auto;
     display:inline-block;
-	position: relative;
-	margin: 2px 4px;
+    vertical-align:top;
+
 }
+
+.centered-children {
+	text-align: center;
+}
+
 .fields {
 	display:none;
 }
 
 .imageBox img{
-	width:455px;
+    width:700px;
+    margin: 0 auto;
+	display: block;
+	
 }
+
 
 .EditPictureBlock {
 	border:1px solid white;
 	margin: 20px;
 }
+
 .EditFormBox {
 	width: 300px;
 	margin: 0 auto;
 	margin-bottom: 30px;
 }
+
 .grid {
 	margin-left: 4px;
 }
+
+
+.one-image-size {
+	width:600px;
+}
+
+#gallery_name,
+#gallery_description {
+	background: none;
+	color: white;
+	border:none;
+	width:260px;
+	border-bottom: 1px solid #93f;
+	margin:0 auto;
+	display:block;
+	padding:5px 0;
+}
+
+#gallery_description{
+	margin-bottom:30px;
+}
+
+.edit_input textarea {
+	background: none;
+	color: white;
+	padding:15px;
+	border:none;
+
+}
+
+.submit-btn {
+	display: block;
+	text-align: center;
+	background: #93f;
+	width:150px;
+	margin:0 auto;
+	border-radius:4px;
+	color:white;
+	border:none;
+	padding:7px;
+	font-size:16px;
+	cursor: pointer;
+}
+
+
+.new_gallery button {
+	border:1px solid white;
+}
+
+.right {
+	float:right;
+
+}
+
+.centered-children {
+	text-align:center;
+}
+
+.edit-picture  {
+	list-slyle:none;
+	float:right;
+	
+}
+
+.edit-picture  li {
+	list-slyle:none;
+	float:left;
+	padding: 0 5px
+}
+
+#gallery_image, #picture_image {
+	position:absolute;
+	opacity:0;
+	width:150px;
+	display: inline-block;
+}
+
+#gallery_image + label,
+#picture_image + label {
+	width:150px;
+	text-align:center;
+	background-color: #93f;
+	display: block;
+	padding:10px;
+	position:relative;
+	cursor:pointer;
+	margin:0 auto;
+	border-radius:4px;
+}
+
+

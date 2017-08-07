@@ -1,3 +1,47 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Devise 
+
+.login-form-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:90vh;
+  
+}
+
+.login-form-wrapper {
+	width:500px;
+  padding:20px;
+  border:1px solid red;
+
+    .field {
+        padding:10px;
+
+        input {
+        background:none;
+        border:none;
+        color:white;
+        padding:5px;
+        margin:5px;
+        text-align:right;
+        width:90%;
+        border-bottom: 2px solid white;
+        color: #dab433;
+        
+        }
+    }
+
+    .actions {
+       text-align:center;
+
+       input {
+         background: #dab433;
+         padding:10px 20px;
+         border:none;
+         border-radius:10px;
+       }
+    }
+}

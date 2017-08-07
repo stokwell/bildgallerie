@@ -1,0 +1,22 @@
+<% @pictures.each do |p| %>
+    <%= div_for p do %>
+    <div class="imageBox">
+    <%= link_to gallery_picture_path(@gallery, p) do %> 
+    
+      <%= image_tag p.image.url if p.image_stored? %> 
+      <% end %>
+      <p class="fields"><%= p.title %> </p>
+      <p class="fields"><%= p.author %> </p>
+      <p class="fields"><%= p.description %></p>
+     
+      <%= link_to 'Edit', edit_gallery_picture_path(@gallery, p), class: 'edit' %>
+      <%= link_to 'Delete', [p.gallery, p], 
+      class: 'destroy',
+               remote: true,
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+    
+     
+     </div>
+     <% end %>
+ <% end %>

@@ -12,175 +12,124 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require angular
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree 
 //= require jquery.remotipart
+
+
+// Multiple images preview in browser
+
 $(function() {
-  $('#picture_image').on('change', function(event) {
-    var files = event.target.files;
-    var image = files[0]
-    // here's the file size
-    console.log(image.size);
-    var reader = new FileReader();
-    reader.onload = function(file) {
-      var img = new Image();
-      console.log(file);
-      img.src = file.target.result;
-      $('#target').html(img);
-    }
-    reader.readAsDataURL(image);
-    console.log(files);
-  });
+    
+    var imagesPreview = function(input) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo('#target');
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#picture_image').on('change', function() {
+        imagesPreview(this, 'div#target');
+    });
+
 });
 
 $(function() {
-  $('#new_photo').on('change', function(event) {
-    var files = event.target.files;
-    var image = files[0]
-    // here's the file size
-    console.log(image.size);
-    var reader = new FileReader();
-    reader.onload = function(file) {
-      var img = new Image();
-      console.log(file);
-      img.src = file.target.result;
-      $('#target').html(img);
-    }
-    reader.readAsDataURL(image);
-    console.log(files);
-  });
+    
+    var imagesPreview = function(input) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo('#target');
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#new_picture').on('change', function() {
+        imagesPreview(this, 'div#target');
+    });
+
 });
+
+
+
 
 $(function(){
-  $('.button').on('click', function(){
-    $('#new_picture').toggleClass('visible')
-  })
-})
+    
+  });
 
-var previewWidth = 150, // ширина превью
-        previewHeight = 150, // высота превью
-        maxFileSize = 2 * 1024 * 1024, // (байт) Максимальный размер файла (2мб)
-        selectedFiles = {},// объект, в котором будут храниться выбранные файлы
-        queue = [],
-        image = new Image(),
-        imgLoadHandler,
-        isProcessing = false,
-        errorMsg, // сообщение об ошибке при валидации файла
-        previewPhotoContainer = document.querySelector('#preview-photo'); // контейнер, в котором будут отображаться превью
- 
-    // Когда пользователь выбрал файлы, обрабатываем их
-    $('input[type=file][id=picture_image]').on('change', function() {
-        var newFiles = $(this)[0].files; // массив с выбранными файлами
- 
-        for (var i = 0; i < newFiles.length; i++) {
- 
-            var file = newFiles[i];
- 
-            // В качестве "ключей" в объекте selectedFiles используем названия файлов
-            // чтобы пользователь не мог добавлять один и тот же файл
-            // Если файл с текущим названием уже существует в массиве, переходим к следующему файлу
-            if (selectedFiles[file.name] != undefined) continue;
- 
-            // Валидация файлов (проверяем формат и размер)
-            if ( errorMsg = validateFile(file) ) {
-                alert(errorMsg);
-                return;
-            }
- 
-            // Добавляем файл в объект selectedFiles
-            selectedFiles[file.name] = file;
-            queue.push(file);
- 
-        }
- 
-        $(this).val('');
-        processQueue(); // запускаем процесс создания миниатюр
+
+ jQuery(function($){
+
+    // Create variables (in this scope) to hold the API and image size
+    var jcrop_api,
+        boundx,
+        boundy,
+
+        // Grab some information about the preview pane
+        $preview = $('#preview-pane'),
+        $pcnt = $('#preview-pane .preview-container'),
+        $pimg = $('#preview-pane .preview-container img'),
+
+        xsize = $pcnt.width(),
+        ysize = $pcnt.height();
+    
+    console.log('init',[xsize,ysize]);
+    $('#cover_img').Jcrop({
+      onChange: updatePreview,
+      onSelect: updatePreview,
+      aspectRatio: xsize / ysize
+    },function(){
+      // Use the API to get the real image size
+      var bounds = this.getBounds();
+      boundx = bounds[0];
+      boundy = bounds[1];
+      // Store the API in the jcrop_api variable
+      jcrop_api = this;
+
+      // Move the preview into the jcrop container for css positioning
+      $preview.appendTo(jcrop_api.ui.holder);
     });
- 
-    // Валидация выбранного файла (формат, размер)
-    var validateFile = function(file)
+
+    function updatePreview(c)
     {
-        if ( !file.type.match(/image\/(jpeg|jpg|png|gif)/) ) {
-            return 'Фотография должна быть в формате jpg, png или gif';
-        }
- 
-        if ( file.size > maxFileSize ) {
-            return 'Размер фотографии не должен превышать 2 Мб';
-        }
+      if (parseInt(c.w) > 0)
+      {
+        var rx = xsize / c.w;
+        var ry = ysize / c.h;
+
+        $pimg.css({
+          width: Math.round(rx * boundx) + 'px',
+          height: Math.round(ry * boundy) + 'px',
+          marginLeft: '-' + Math.round(rx * c.x) + 'px',
+          marginTop: '-' + Math.round(ry * c.y) + 'px'
+        });
+      }
     };
- 
-    var listen = function(element, event, fn) {
-        return element.addEventListener(event, fn, false);
-    };
- 
-    // Создание миниатюры
-    var processQueue = function()
-    {
-        // Миниатюры будут создаваться поочередно
-        // чтобы в один момент времени не происходило создание нескольких миниатюр
-        // проверяем запущен ли процесс
-        if (isProcessing) { return; }
- 
-        // Если файлы в очереди закончились, завершаем процесс
-        if (queue.length == 0) {
-            isProcessing = false;
-            return;
-        }
- 
-        isProcessing = true;
- 
-        var file = queue.pop(); // Берем один файл из очереди
- 
-        var li = document.createElement('LI');
-        var span = document.createElement('SPAN');
-        var spanDel = document.createElement('SPAN');
-        var canvas = document.createElement('CANVAS');
-        var ctx = canvas.getContext('2d');
- 
-        span.setAttribute('class', 'img');
-        spanDel.setAttribute('class', 'delete');
-        spanDel.innerHTML = 'Удалить';
- 
-        li.appendChild(span);
-        li.appendChild(spanDel);
-        li.setAttribute('data-id', file.name);
- 
-        image.removeEventListener('load', imgLoadHandler, false);
- 
-        // создаем миниатюру
-        imgLoadHandler = function() {
-            ctx.drawImage(image, 0, 0, previewWidth, previewHeight);
-            URL.revokeObjectURL(image.src);
-            span.appendChild(canvas);
-            isProcessing = false;
-            setTimeout(processQueue, 200); // запускаем процесс создания миниатюры для следующего изображения
-        };
- 
-        // Выводим миниатюру в контейнере previewPhotoContainer
-        previewPhotoContainer.appendChild(li);
-        listen(image, 'load', imgLoadHandler);
-        image.src = URL.createObjectURL(file);
- 
-        // Сохраняем содержимое оригинального файла в base64 в отдельном поле формы
-        // чтобы при отправке формы файл был передан на сервер
-        var fr = new FileReader();
-        fr.readAsDataURL(file);
-        fr.onload = (function (file) {
-            return function (e) {
-                $('#preview-photo').append(
-                        '<input type="hidden" name="photos[]" value="' + e.target.result + '" data-id="' + file.name+ '">'
-                );
-            }
-        }) (file);
-    };
- 
-    // Удаление фотографии
-    $(document).on('click', '#preview-photo li span.delete', function() {
-        var fileId = $(this).parents('li').attr('data-id');
- 
-        if (selectedFiles[fileId] != undefined) delete selectedFiles[fileId]; // Удаляем файл из объекта selectedFiles
-        $(this).parents('li').remove(); // Удаляем превью
-        $('input[name^=photo][data-id="' + fileId + '"]').remove(); // Удаляем поле с содержимым файла
-    });
+
+  }); 
 
  

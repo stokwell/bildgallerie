@@ -8,7 +8,7 @@ body {
 
 }
 .container {
-	margin:  auto;
+	margin:  \auto;
 }
 
 .image { 
@@ -184,9 +184,7 @@ textarea:focus{
 .wrapper form .btn:hover {
    color: pink;
 }
-.field {
-   display:inline-block;
-}
+
 .wrapper img {
 	vertical-align: top;
 	margin-right:30px;
@@ -210,5 +208,9 @@ textarea:focus{
 	text-align:center;
 }
 #target img{
-	width:300px;
+	height:200px;
+	margin:10px;
+}
+#target {
+	text-align:left;
 }

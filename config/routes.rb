@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  get 'images/show'
-  get 'images/new'
+ 
+  devise_for :users
+
   post "images/new" => "images#create"
   get '/signup' =>'users#new'
+
   resources :galleries do 
     resources :pictures
-   end 
-  resources :users 
-  resources :images
-  resources :photos
-  resources :users_images
+  end 
+
+  resources :galleries, shallow: true do 
+    patch :published, on: :member
+  end
+
+  
+
   get '/welcome/signup' =>'users#new'
   get '/photos' => 'photos#index'
   post "/signup" => "users#create"
@@ -19,7 +23,7 @@ Rails.application.routes.draw do
   delete '/photos' => 'photos#destroy'
   delete 'logout' => 'sessions#destroy'
   post '/galleries/:gallery_id/pictures/:id(.:format)' => 'pictures#update'
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

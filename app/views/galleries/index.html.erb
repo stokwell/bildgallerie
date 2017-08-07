@@ -1,22 +1,42 @@
+<nav class="main">
+  <ul>
+    <li><%= link_to 'home', '/' %></li>
+    <li><%= link_to 'add new gallery', new_gallery_path %></li>
+  </ul>
+</nav>
+
 <header>
   <h1>All galleries</h1>
-  <div><%= link_to 'home', welcome_index_path %></div>
-  <div><%= link_to 'to create new gallery', new_gallery_path %></div>
 </header>
 
+
+
+<div class="galleries-wrapper" id="galleries_grid">
  <% @galleries.each do |gallery| %>
+   <%= div_for gallery do %>
+  <div class="gallery-box">
+     <div class="cover-box">
+       <%= link_to(gallery_path(gallery)) do %>
+       <%= image_tag gallery.avatar.url(:cover) %> 
+       <%= image_tag gallery.image.url  if gallery.image_stored? %>
+       <% end %>
 
-  <div class="gallery galleryBox">
- 
-     <h3 class="centered"><%= gallery.name %></h3>
-
-     <p class="title"><%= gallery.description %></p>
-    
-     <div><%= link_to 'Open this gallery', gallery %></div>
-     <div><%= link_to 'Delete', gallery_path(gallery),
+       <%= link_to 'Edit', edit_gallery_path(gallery), class: 'edit' %>       
+       <%= link_to 'Delete', gallery_path(gallery), remote: true,
+              class: 'destroy',
               method: :delete,
-              data: { confirm: 'Do You really want to delete this gallery?' } %></div>
-     <div><%= link_to 'Edit', edit_gallery_path(gallery) %></div>          
- 
-   </div> 
+              data: { confirm: 'Do You really want to delete this gallery?' } %>
+       
+          <div class="info-box"> 
+          <h3 class="gallery-title"><%= gallery.name %></h3>
+          <p class="gallery-description"><%= gallery.description %></p>
+          </div>
+       
+     </div>
+
+     
+   </div>
+     <% end %>
  <% end %>
+</div>
+

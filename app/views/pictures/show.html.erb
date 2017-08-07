@@ -1,11 +1,43 @@
-<header>
-   <h1><%= @picture.title %></h1>
-   <%= link_to 'back', gallery_path(@gallery) %>
-   <%= link_to 'edit', edit_gallery_picture_path %>
-</header>  
+<nav class="main">
+  <ul>
+    <li><%= link_to 'home', '/' %></li>
+    <li><%= link_to 'back to gallery', gallery_path(@gallery) %></li>
+  </ul>
+</nav>
+
+<nav class="main menu-right">
+  <ul>
+   <li><%= link_to 'edit', edit_gallery_picture_path %></li>
+  </ul>
+  
+</nav>
 
 <div class="container">
-<div class="ImageCenter">
-   <%= image_tag @picture.image.url  if @picture.image_stored? %>
-</div>         
+  <div class="ImageCenter">
+     <%= image_tag @picture.image.url  if @picture.image_stored? %>
+  </div>
+
+<div class="description">
+  <p class="image-title"><%= @picture.title %></p>
+  <p class="image-author"><%= @picture.author %></p>
+  <p class="image-description"><%= @picture.description %></p>
 </div>
+
+
+
+
+
+
+
+  
+  <!--<div class="arrows">
+    <% if @picture.next %>
+       <%= link_to 'prev', gallery_picture_path(@gallery, @picture.next) %>
+    <% end %>         
+
+    <% if @picture.prev %>
+       <%= link_to 'next', gallery_picture_path(@gallery, @picture.prev) %>
+    <% end %>-->
+  </div>
+  
+</div> 

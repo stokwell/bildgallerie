@@ -1,9 +1,0 @@
- <%= link_to 'Upload multiple photos', new_photo_multiple_path %>
-
- <% @photos.each do |photo| %>
-    <div class="image">
-    <%= image_tag photo.image.url if photo.image_stored? %>
-    
-    
-     </div>         
-  <% end %>

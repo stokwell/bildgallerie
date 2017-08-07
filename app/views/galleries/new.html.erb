@@ -1,11 +1,34 @@
-<header>
- <h1>To Create a new Gallery</h1>
- <%= link_to 'back to galleries', galleries_path %>
-</header>
- <div class="container">
- <%= form_for @gallery do |f| %>
-   <div> <%= f.text_field :name, placeholder: 'Name'%></div>
-   <div> <%= f.text_area :description,  placeholder: 'Description', rows:'5', class:'text' %></div>
-    <%= f.submit 'Submit', class: 'btn' %>
-<% end %>
-<div>
+<nav class="main">
+  <ul>
+    <li><%= link_to 'home', '/' %></li>
+    <li><%= link_to 'back to galleries', galleries_path %></li>
+  </ul>
+</nav>
+
+<h1 class="centered">Create a new Gallery</h1>
+<p class="centered"> Add a gallery's Description</p>
+
+
+<div class="gallery_new galleryBox">
+  <%= form_for @gallery do |f| %>
+    <div class="cover-box">
+    <%= f.file_field :avatar %>
+
+    <div class="description-box">
+      <p class="centered">Title</p>
+      <%= f.text_field :name, placeholder: 'Name', required: true  %>
+      <p class="centered">Description</p>
+      <%= f.text_field :description,  placeholder: 'Description', required: true %>
+      <%= f.submit 'Create', class:'submit-btn' %>  
+    </div>
+   <% end %> 
+ </div>
+
+ <p class="centered">Add some pictures to this gallery</p>
+ 
+ 
+ <div class="DoNotShow" id="FormForUpload">
+
+ </div>
+
+ <div class="modalview-background DoNotShow"></div>
