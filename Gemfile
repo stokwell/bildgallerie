@@ -11,12 +11,13 @@ gem 'friendly_id'
 
 gem 'devise'
 
-gem 'remotipart', '~> 1.2'
+gem 'remotipart', '~> 1.2', github: 'pedantix/remotipart', ref: '7f7989db572976816c03508c335bbc1d8230af78'
+gem 'record_tag_helper', '~> 1.0'
 
 gem 'react-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -39,7 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'angularjs-rails'
 
-group :test do 
+group :test do
 	gem 'rspec-rails'
 	gem 'factory_girl'
 end
@@ -65,4 +66,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring'
 end
-

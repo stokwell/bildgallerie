@@ -5,11 +5,11 @@ class GalleriesController < ApplicationController
      @galleries = Gallery.all.order(created_at: :desc)
      @gallery = Gallery.new
   end
-   
-  def show 
-    @gallery = Gallery.friendly.find(params[:id])
+
+  def show
+    @gallery = Gallery.find(params[:id])
     @pictures= @gallery.pictures.order(created_at: :desc).limit(10)
-  end   
+  end
 
   def new
     @gallery = Gallery.new
@@ -20,16 +20,16 @@ class GalleriesController < ApplicationController
     @gallery.user = current_user
     if @gallery.save
       if params[:gallery][:avatar].present?
-        render :crop 
-      else  
-        flash[:notice] = "new gallery was successfully created"  
+        render :crop
+      else
+        flash[:notice] = "new gallery was successfully created"
         redirect_to gallery_path(@gallery)
      end
     else
-      flash[:notice] = "Can't create new gallery" 
+      flash[:notice] = "Can't create new gallery"
       render :new
-    end  
-  end 
+    end
+  end
 
   def edit
     @gallery = Gallery.find(params[:id])
@@ -38,15 +38,15 @@ class GalleriesController < ApplicationController
 
 
  def update
+   @gallery = Gallery.find(params[:id])
    respond_to do |format|
-     @gallery = Gallery.find(params[:id])
      @gallery.update(gallery_params)
      format.html {  redirect_to @gallery}
-     format.js   
+     format.js
     end
  end
- 
- def destroy 
+
+ def destroy
     @gallery = Gallery.find(params[:id])
     respond_to do |format|
     @gallery.destroy
@@ -58,10 +58,11 @@ class GalleriesController < ApplicationController
  def published
   @gallery = Gallery.find(params[:id])
   @gallery.update(published: true)
-  flash[:notice] = "This gallery is published" 
+  flash[:notice] = "This gallery is published"
  end
 
 private
+
   def gallery_params
     params.require(:gallery).permit(:avatar, :crop_x, :crop_y, :crop_w, :crop_h, :image, :name, :gallery_id, :description, :picture_id, pictures_attributes: [:id, :title, :author, :description])
   end

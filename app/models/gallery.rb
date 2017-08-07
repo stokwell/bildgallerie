@@ -1,6 +1,5 @@
 class Gallery < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :name
+  
 
   validates :name, :description,  :presence => true
 
@@ -9,7 +8,7 @@ class Gallery < ActiveRecord::Base
   belongs_to :user
 
   mount_uploader :avatar, AvatarUploader
-  
+
 
   dragonfly_accessor :image
 
