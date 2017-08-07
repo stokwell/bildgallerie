@@ -1,23 +1,28 @@
+<section class="gallery-info">
 <nav class="main">
   <ul>
-    <li><%= link_to 'home', welcome_index_path %></li>
+    <li><%= link_to 'home', '/' %></li>
     <li><%= link_to 'back to galleries', galleries_path %></li>
     <li><a class="button">add new pictures</a></li>
   </ul>
 </nav>
 
-<nav class="main right">
+<nav class="main menu-right">
   <ul>
     <li><a class="one-image-grid">single</a></li>
     <li><a class="multi-image-grid">multi</a></li>
+    <% if user_signed_in? && @gallery.user_id == current_user.id %>
     <li><%= link_to 'edit', edit_gallery_path(@gallery) %></li>
+    <li><%= link_to 'published', published_gallery_path(@gallery), method: :patch, remote: true %> </li>
+    <% end %>  
   </ul>
 </nav>
 
-<header>  
-  <h1><%= @gallery.name %></h1>
-  <!--<%= link_to 'add new images to this gallery', [@gallery, @gallery.pictures.build], controller: :pictures, action: :new %>-->
-</header>
+ 
+<h1 class="centered"><%= @gallery.name %></h1>
+
+
+</section>
 
 <div class="DoNotShow" id="FormForUpload"> 
        <div id="target"></div>
@@ -30,38 +35,15 @@
    
  </div>
 
+
 <div class="centered-children">
- <!-- <div class="form-for-upload">
-       <div id="target"></div>
-       <%= form_for([@gallery, @gallery.pictures.build]) do |f| %>
-       <%= f.file_field :image, class:'file', :multiple => true %>
-       <p><%= f.submit  %></p>
-       <p><% end %></p>
-   </div>-->
   <div id="grid">
- <% @pictures.each do |p| %> 
-  <%= div_for p do %>
-   <div class="imageBox">
-    <%= link_to gallery_picture_path(@gallery, p) do %> 
-    
-      <%= image_tag p.image.url if p.image_stored? %> 
-      <% end %>
-      <p class="fields"><%= p.title %> </p>
-      <p class="fields"><%= p.author %> </p>
-      <p class="fields"><%= p.description %></p>
-     
-      <%= link_to 'Edit', edit_gallery_picture_path(@gallery, p), class: 'edit' %>
-      <%= link_to 'Delete', [p.gallery, p], 
-      class: 'destroy',
-               remote: true,
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-    
-     
-     </div>
-     <% end %>
- <% end %>
- </div>
+  <% if @pictures.any? %>                             
+     <%= render 'pictures/pictures' %>                             
+  <% else %>                             
+    <%= render 'galleries/no_records' %>
+ <% end %>  
+  </div>
 </div>
 
 

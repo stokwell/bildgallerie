@@ -1,6 +1,6 @@
- <% @pictures.each do |p| %> 
-  <%= div_for p do %>
-   <div class="imageBox">
+<% @pictures.each do |p| %>
+    <%= div_for p do %>
+    <div class="imageBox">
     <%= link_to gallery_picture_path(@gallery, p) do %> 
     
       <%= image_tag p.image.url if p.image_stored? %> 
@@ -20,4 +20,3 @@
      </div>
      <% end %>
  <% end %>
-

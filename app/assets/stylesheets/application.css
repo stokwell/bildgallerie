@@ -28,5 +28,7 @@ a:hover {
     color:red;
 }
 
-
+.notice, .alert {
+	text-align: center;
+}
 

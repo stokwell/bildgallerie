@@ -2,7 +2,7 @@
 <ul>
   <!--<li>Bild des Tages wählen</li>
   <li>Bild des Tages vorschlagen</li>-->
-  <li><%= link_to 'Archiv', photos_path %></li>
+  <li></li>
   <li>Lectüre</li>
   <li><%= link_to 'Galleries', galleries_path %></li>
   
@@ -12,47 +12,24 @@
 <nav class="languages">
   <ul>
     <li>Sprachen</li>
-    <li><%= link_to "Log in", 'login' %></a></li> 
-    <li><%= link_to 'Sign up', 'signup' %></li>
-
-  </ul>
-
+    <% if user_signed_in? %>
+    <li><%= link_to 'Logout', destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+    <li><%= link_to 'Login', new_user_session_path %></li> 
+    <% end %>
   </ul>
 </nav>
 
 
+<p class="name centered"> Digitale Bildgallerie</p>
+ 
 
-
-<div class="bild">
-   <p class="name">Welcome <%= current_user.email %></p>
-   <p class="name"> Digitale Bildgallerie</p>
-   <p><%= image_tag('3.jpg', :id => "cover_img" ) %></p>
-    <div id="preview-pane">
-    <div class="preview-container">
-      <%= image_tag('3.jpg', :height => "200px", :width => "300px" ) %>
-    </div>
-  </div>
+<div class="galleries-wrapper" id="galleries_grid">
+  <%= render 'galleries/gallery'%>
 </div>
 
+<%= react_component 'Main' %>
 
-<!--<%= link_to 'Photos', controller: 'photos' %>
-<%= link_to 'New Image', new_image_path %>
  
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Text</th>
-  </tr>
- 
-  <% @images.each do |image| %>
-    <tr>
-      <td><%= image.title %></td>
-      <td><%= image.author %></td>
-      <td><%= image.text %></td>
-      <td><%= link_to 'Show', image_path(image) %></td>
-      <td><%= link_to 'Edit', edit_image_path(image) %></td>
-    </tr>
-  <% end %>
-</table>-->
+
 

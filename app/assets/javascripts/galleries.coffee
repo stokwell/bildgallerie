@@ -34,6 +34,21 @@ $ ->
   #      itemSelector: '.gallery-box';
    #     }); 
 
+$ ->
+  new CoverCropper()
+
+class CoverCropper
+  constructor: ->
+    $('#cropbox').Jcrop
+      onSelect: @update
+      onChange: @update
+      aspectRatio: 1
+
+  update: (coords) =>
+    $('#gallery_crop_x').val(coords.x)
+    $('#gallery_crop_y').val(coords.y)    
+    $('#gallery_crop_w').val(coords.w)    
+    $('#gallery_crop_h').val(coords.h)    
 
 
 

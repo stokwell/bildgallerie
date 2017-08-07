@@ -4,5 +4,5 @@ alert('The photo could not be uploaded: <%= j @photo.errors.full_messages.join('
 $('#FormForUpload').toggleClass('DoNotShow').toggleClass('ModalViewForUpload')
 $('.modalview-background').toggleClass('DoNotShow')
 $('body').removeClass('lock')
-$('#grid').html('<%= j render @pictures %>')
+$('#grid').prepend('<%= j render @picture %>')
 <% end %>

@@ -1,0 +1,15 @@
+<h1><%= @gallery.name %></h1>
+<%= image_tag @gallery.avatar.url(:large), id: "cropbox" %>
+
+<div>
+<%= form_for @gallery do |f| %>
+  <%= f.text_field :name %>
+  <% %w[x y w h].each do |attribute| %>
+    <%= f.text_field "crop_#{attribute}" %><br>
+  <% end %>
+
+  <div class="actions">
+  	<%= f.submit "Crop" %>
+  </div>
+<% end %>  
+</div>

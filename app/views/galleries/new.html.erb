@@ -1,6 +1,6 @@
 <nav class="main">
   <ul>
-    <li><%= link_to 'home', welcome_index_path %></li>
+    <li><%= link_to 'home', '/' %></li>
     <li><%= link_to 'back to galleries', galleries_path %></li>
   </ul>
 </nav>
@@ -9,15 +9,10 @@
 <p class="centered"> Add a gallery's Description</p>
 
 
-<div class="gallery galleryBox">
-  <%= form_for(@gallery, remote: true) do |f| %>
+<div class="gallery_new galleryBox">
+  <%= form_for @gallery do |f| %>
     <div class="cover-box">
-   <div id="cover"></div>
-      <p class="centered">Unpload an Image for <br> gallery's preview</p>
-      <%= f.file_field :image, class:'file' %>
-      <label for="gallery_image">Upload</label>
-      
-    </div>
+    <%= f.file_field :avatar %>
 
     <div class="description-box">
       <p class="centered">Title</p>

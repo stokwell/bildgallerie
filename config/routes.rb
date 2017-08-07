@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
  
   devise_for :users
-  get 'welcome/index'
-  get 'images/show'
-  get 'images/new'
+
   post "images/new" => "images#create"
   get '/signup' =>'users#new'
+
   resources :galleries do 
     resources :pictures
-   end 
-  resources :users 
-  resources :images
-  resources :photos
-  resources :users_images
+  end 
+
+  resources :galleries, shallow: true do 
+    patch :published, on: :member
+  end
+
+  
+
   get '/welcome/signup' =>'users#new'
   get '/photos' => 'photos#index'
   post "/signup" => "users#create"
@@ -26,9 +28,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'galleries#show'
-
-   get 'angular_test', to: "angular_test#index"
+   root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

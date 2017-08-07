@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree 
 //= require jquery.remotipart
 
@@ -71,33 +74,7 @@ $(function() {
 
 });
 
-$(function() {
-    
-    var imagesPreview = function(input) {
 
-        if (input.files) {
-            var filesAmount = input.files.length;
-
-            for (i = 0; i < filesAmount; i++) {
-                var reader = new FileReader();
-
-                reader.onload = function(event) {
-                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo('#cover').attr('id', 'cover_img');
-                }
-
-                reader.readAsDataURL(input.files[i]);
-            }
-        }
-
-    };
-
-    $('#gallery_image').on('change', function() {
-        imagesPreview(this, 'div#cover');
-        $('.submit-btn').click();
-     });
-
-    
-});
 
 
 $(function(){

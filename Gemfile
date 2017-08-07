@@ -4,11 +4,16 @@ gem 'dragonfly'
 
 gem 'bower-rails'
 
-
+gem 'carrierwave'
+gem 'rmagick'
+gem 'mini_magick'
+gem 'friendly_id'
 
 gem 'devise'
 
 gem 'remotipart', '~> 1.2'
+
+gem 'react-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'

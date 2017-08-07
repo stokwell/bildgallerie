@@ -4,19 +4,16 @@ class PicturesController < ApplicationController
  end
 
  def show
-    @gallery= Gallery.find(params[:gallery_id])
+    @gallery= Gallery.friendly.find(params[:gallery_id])
     @picture = @gallery.pictures.find(params[:id])
  end
 
  def create
     @gallery= Gallery.find(params[:gallery_id])
-      respond_to do |format|
         params[:picture]['image'].each do |a|
         @picture = @gallery.pictures.create!(:image => a)
       end
-    format.html 
-    format.js   
-  end
+    redirect_to gallery_path(@gallery)
  end
 
  def edit
@@ -44,6 +41,10 @@ end
     format.html { render gallery_path(@gallery)}
     format.js   
   end  
+ end
+
+ def next
+  flash[:notice] = "Can't create new gallery" 
  end
 
 

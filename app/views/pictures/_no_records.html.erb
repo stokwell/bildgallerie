@@ -1,0 +1,8 @@
+<h3>There aren't any pictures in this gallery</h3>
+
+<div id="target"></div>
+  <%= form_for([@gallery, @gallery.pictures.build], remote: true) do |f| %>
+  <%= f.file_field :image, class:'file', :multiple => true %>
+  <label for="picture_image">Choose</label>
+  <div><%= f.submit 'Upload' %></div>
+<% end %>

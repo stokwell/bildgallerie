@@ -20,3 +20,80 @@
      </div>
      <% end %>
  <% end %>
+
+ <!-- <% @pictures.each do |p| %> 
+  <%= div_for p do %>
+   <div class="imageBox">
+    <%= link_to gallery_picture_path(@gallery, p) do %> 
+    
+      <%= image_tag p.image.url if p.image_stored? %> 
+      <% end %>
+      <p class="fields"><%= p.title %> </p>
+      <p class="fields"><%= p.author %> </p>
+      <p class="fields"><%= p.description %></p>
+     
+      <%= link_to 'Edit', edit_gallery_picture_path(@gallery, p), class: 'edit' %>
+      <%= link_to 'Delete', [p.gallery, p], 
+      class: 'destroy',
+               remote: true,
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+    
+     
+     </div>
+     <% end %>
+ <% end %>-->
+
+  <div id="cover"></div>
+      <p class="centered">Unpload an Image for <br> gallery's preview</p>
+      <%= f.file_field :image, class:'file' %>
+      <label for="gallery_image">Upload</label>
+      
+    </div>
+
+
+ $(function() {
+    
+    var imagesPreview = function(input) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo('#cover').attr('id', 'cover_img');
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery_image').on('change', function() {
+        imagesPreview(this, 'div#cover');
+        $('.submit-btn').click();
+     });
+
+    
+});
+
+<div class="gallery galleryBox DoNotShow">
+  <h3 class="centered">Create new gallery</h3>
+  <%= form_for(@gallery, remote: true) do |f| %>
+    <div class="cover-box">
+      <p class="centered">Unpload an Image for gallery's preview</p>
+      <%= f.file_field :image, class:'file' %>
+    </div>
+
+    <div class="description-box">
+      <p class="centered">Title</p>
+      <%= f.text_field :name, placeholder: 'Name', required: true  %>
+      <p class="centered">Description</p>
+      <%= f.text_field :description,  placeholder: 'Description', required: true %>
+      <%= f.submit 'Create' %>  
+    </div>
+   <% end %> 
+ </div>
